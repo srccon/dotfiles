@@ -3,24 +3,24 @@
 # Where do you want the dotfiles directory
 dotfilepwd="$HOME/.dotfiles"
 
-dotfilebak="$dotfilepwd/orig"
+dotfileorig="$dotfilepwd/orig"
 
 syncfile="sync.sh"
 
 # Temp location
 tmpfile="/tmp/dotfiles.tmp"
 
-if [ ! -d $dotfilebak ]; then
-	echo "Making $dotfilebak directory for existing files/directories"
-	mkdir $dotfilebak
+if [ ! -d $dotfileorig ]; then
+	echo "Making $dotfileorig directory for existing files/directories"
+	mkdir $dotfileorig
 fi
 
 find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^$syncfile | grep -v orig > "$tmpfile"
 
 while read i; do
 	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
-		echo "Moving $i to $dotfilebak/$i"
-		mv "$HOME/$i" "$dotfilebak/$i"
+		echo "Moving $i to $dotfileorig/$i"
+		mv "$HOME/$i" "$dotfileorig/$i"
 	fi
 	if [ -h "$HOME/$i" ]; then
 		echo "Updating Symlink $i"
