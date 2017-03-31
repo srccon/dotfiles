@@ -1,0 +1,6 @@
+[submodule "lib/liquidprompt"]
+	path = lib/liquidprompt
+	url = https://github.com/nojhan/liquidprompt.git
+[submodule "lib/z"]
+	path = lib/z
+	url = https://github.com/rupa/z.git
