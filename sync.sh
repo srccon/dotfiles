@@ -15,12 +15,12 @@ if [ ! -d $dotfileorig ]; then
 	mkdir $dotfileorig
 fi
 
-find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^$syncfile | grep -v orig > "$tmpfile"
+find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^$syncfile | grep -v ^orig | grep -v ^.git > "$tmpfile"
 
 while read i; do
 	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
 		echo "Moving $i to $dotfileorig/$i"
-		mv "$HOME/$i" "$dotfileorig/$i"
+		mv "$HOME/$i" "$dotfileorig/"
 	fi
 	if [ -h "$HOME/$i" ]; then
 		echo "Updating Symlink $i"
