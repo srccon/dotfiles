@@ -94,16 +94,11 @@ source ~/.dotfiles/lib/z/z.sh
 
 # MOTD
 # Nice greeting when opening a terminal window
-if [ -d ~/.motd.d ]; then
-	source ~/.motd.d/*
-fi
+for f in ~/.motd.d/*; do source $f; done
 
 # Aliases
 # Making commands a little shorter
-
-if [ -d ~/.bash_aliases.d ]; then
-	source ~/.bash_aliases.d/*
-fi
+for f in ~/.bash_aliases.d/*; do source $f; done
 
 
 PS1='[\u@\h \W]\$ '
