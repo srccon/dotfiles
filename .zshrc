@@ -27,6 +27,6 @@ else
   export EDITOR='vim'
 fi
 
-source ~/.dotfiles/lib/pure/pure.zsh
 source ~/.dotfiles/lib/pure/async.zsh
+source ~/.dotfiles/lib/pure/pure.zsh
 source ~/.dotfiles/lib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
