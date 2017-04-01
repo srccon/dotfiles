@@ -89,9 +89,9 @@ fi
 # Check for Dotfiles, install and update
 if [ ! -d ~/.dotfiles ]; then
 	git clone https://github.com/srccon/dotfiles.git .dotfiles
-	(cd ~/.dotfiles && git submodule update && ./sync.sh)
+	(cd ~/.dotfiles && git submodule update --recursive --remote && ./sync.sh)
 else
-	(cd ~/.dotfiles && git pull && git submodule update && ./sync.sh )
+	(cd ~/.dotfiles && git pull && git submodule update --recursive --remote && ./sync.sh )
 fi
 
 # Source apps to shell
@@ -99,8 +99,7 @@ source ~/.dotfiles/lib/z/z.sh
 
 # MOTD
 # Nice greeting when opening a terminal window
-#for f "$HOME/.motd.d/*"; do source $f; echo $f; done
-for f in `ls $HOME/.motd.d/*`; do source $f; done
+#for f in `ls $HOME/.motd.d/*`; do source $f; done
 
 # Aliases
 # Making commands a little shorter
