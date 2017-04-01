@@ -97,10 +97,11 @@ source ~/.dotfiles/lib/z/z.sh
 
 # MOTD
 # Nice greeting when opening a terminal window
-for f in ~/.motd.d/*; do source $f; done
+#for f "$HOME/.motd.d/*"; do source $f; echo $f; done
+for f in `ls $HOME/.motd.d/*`; do source $f; done
 
 # Aliases
 # Making commands a little shorter
-for f in ~/.bash_aliases.d/*; do source $f; done
+for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
 
 PS1='[\u@\h \W]\$ '
