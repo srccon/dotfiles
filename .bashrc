@@ -5,6 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Bash only stuff that zsh will skip
 if [[ "`echo $0`" == "bash" ]];then 
 	# append to the history file, don't overwrite it
 	shopt -s histappend
@@ -27,11 +28,13 @@ if [[ "`echo $0`" == "bash" ]];then
 	# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 	HISTSIZE=1000
 	HISTFILESIZE=2000
+
+        source ~/.dotfiles/lib/liquidprompt/liquidprompt
 fi
 
 
 # What utilites are needed?
-NEEDED=(git vim ncdu ranger lynx htop tree)
+NEEDED=(git vim ncdu ranger lynx htop tree zsh)
 #TODO add ack / ack-grep
 
 # Empty array to be filled with needed utilites
@@ -92,7 +95,6 @@ else
 fi
 
 # Source apps to shell
-source ~/.dotfiles/lib/liquidprompt/liquidprompt
 source ~/.dotfiles/lib/z/z.sh
 
 # MOTD

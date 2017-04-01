@@ -4,3 +4,9 @@
 [submodule "lib/z"]
 	path = lib/z
 	url = https://github.com/rupa/z.git
+[submodule "lib/pure"]
+	path = lib/pure
+	url = https://github.com/sindresorhus/pure.git
+[submodule "lib/zsh-syntax-highlighting"]
+	path = lib/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
