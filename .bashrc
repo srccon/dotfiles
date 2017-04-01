@@ -83,16 +83,11 @@ source ~/.dotfiles/lib/z/z.sh
 
 # MOTD
 # Nice greeting when opening a terminal window
-if [ -d ~/.motd.d ]; then
-	source ~/.motd.d/*
-fi
+for f in ~/.motd.d/*; do source $f; done
 
 # Aliases
 # Making commands a little shorter
-
-if [ -d ~/.bash_aliases.d ]; then
-	source ~/.bash_aliases.d/*
-fi
+for f in ~/.bash_aliases.d/*; do source $f; done
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
