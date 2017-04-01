@@ -1,5 +1,8 @@
+alias gs='git status'
 alias gc='git commit -m'
 alias gca='git commit -am'
 alias ga='git add'
 alias gu='git reset HEAD'
+alias gf='git diff'
+alias gp='git pull && git push'
 alias gitk='gitk --all&'
