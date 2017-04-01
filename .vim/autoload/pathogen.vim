@@ -1,0 +1,1 @@
+/home/bang/.dotfiles/lib/vim-pathogen/autoload/pathogen.vim
