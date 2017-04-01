@@ -31,3 +31,6 @@
 [submodule "lib/vim-sensible"]
 	path = lib/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "lib/sshrc"]
+	path = lib/sshrc
+	url = https://github.com/Russell91/sshrc.git
