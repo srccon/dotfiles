@@ -9,6 +9,11 @@ dotfileorig="$dotfilepwd/orig"
 # Temp location
 tmpfile="/tmp/dotfiles.tmp"
 
+function finish() {
+    rm $tmpfile
+}
+trap finish EXIT
+
 if [ ! -d "$dotfileorig" ]; then
 	echo "Making $dotfileorig directory for existing files/directories"
 	mkdir $dotfileorig
@@ -26,7 +31,5 @@ while read i; do
 	fi
 	ln -s "$dotfilepwd/$i" "$HOME/$i"
 done < "$tmpfile"
-
-rm $tmpfile
 
 exit 0
