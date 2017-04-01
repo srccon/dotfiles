@@ -17,5 +17,3 @@ for f in `ls $SHDIR/*`; do source $f; done
 
 # Bash Configs
 for f in `ls $BASHDIR/*`; do source $f; done
-
-PS1='[\u@\h \W]\$ '

@@ -1,35 +1,28 @@
 #!/bin/bash
 
-# Where do you want the dotfiles directory?
-dotfilepwd="$HOME/.dotfiles"
-
-# How about the original/default dotfiles?
-dotfileorig="$dotfilepwd/orig"
-
-# Temp location
-tmpfile="/tmp/dotfiles.tmp"
+source ./vars
 
 function finish() {
-    rm $tmpfile
+    rm $DOTTMP
 }
 trap finish EXIT
 
-if [ ! -d "$dotfileorig" ]; then
-	echo "Making $dotfileorig directory for existing files/directories"
-	mkdir $dotfileorig
+if [ ! -d "$DOTORIG" ]; then
+	echo "Making $DOTORIG directory for existing files/directories"
+	mkdir $DOTORIG
 fi
 
-find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v .md$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$tmpfile"
+find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v .md$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$DOTTMP"
 
 while read i; do
 	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
-		echo "Moving $i to $dotfileorig/$i"
-		mv "$HOME/$i" "$dotfileorig/"
+		echo "Moving $i to $DOTORIG/$i"
+		mv "$HOME/$i" "$DOTORIG/"
 	fi
 	if [ -h "$HOME/$i" ]; then
 		rm "$HOME/$i"
 	fi
-        (cd $HOME && ln -s ".dotfiles/$i" "$i")
-done < "$tmpfile"
+        (cd $HOME && ln -s "$DOTDIRNAME/$i" "$i")
+done < "$DOTTMP"
 
 exit 0
