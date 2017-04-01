@@ -89,9 +89,18 @@ fi
 # Check for Dotfiles, install and update
 if [ ! -d ~/.dotfiles ]; then
 	git clone https://github.com/srccon/dotfiles.git .dotfiles
-	(cd ~/.dotfiles && git submodule update --recursive --remote && ./sync.sh)
+	(cd ~/.dotfiles && \
+		git submodule init && \
+		git submodule update --recursive --remote && \
+		./sync.sh \
+	)
 else
-	(cd ~/.dotfiles && git pull && git submodule update --recursive --remote && ./sync.sh )
+	(cd ~/.dotfiles && \
+		git pull && \
+		git submodule init && \
+		git submodule update --recursive --remote && \
+		./sync.sh \
+	)
 fi
 
 # Source apps to shell
