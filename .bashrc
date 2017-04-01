@@ -29,7 +29,6 @@ if [[ "`echo $0`" == "bash" ]];then
 	HISTSIZE=1000
 	HISTFILESIZE=2000
 
-        source ~/.dotfiles/lib/liquidprompt/liquidprompt
 fi
 
 
@@ -154,6 +153,10 @@ if [ ! $depsunmet = 1 ];then
 	# Aliases
 	# Making commands a little shorter
 	for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
+        
+        if [[ "`echo $0`" == "bash" ]];then 
+            source ~/.dotfiles/lib/liquidprompt/liquidprompt
+        fi
 fi
 
 PS1='[\u@\h \W]\$ '
