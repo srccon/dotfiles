@@ -35,7 +35,9 @@ fi
 
 # What utilites are needed?
 NEEDED=(git vim ncdu ranger lynx htop tree zsh)
-#TODO add ack / ack-grep
+
+# Are Dependencies set (double negativeTODO) 
+depsunmet=0
 
 # Empty array to be filled with needed utilites
 NEEDTOINSTALL=()
@@ -81,7 +83,6 @@ if [ -n "${NEEDTOINSTALL[*]}" ]; then
 	read installapps
 	if [ $installapps = "y" ];then
 		sudo $PKM ${NEEDTOINSTALL[@]}
-		depsunmet=0
 	else
 		echo "Skipping Needed Apps Install"
 		depsunmet=1
@@ -89,7 +90,7 @@ if [ -n "${NEEDTOINSTALL[*]}" ]; then
 fi
 
 # Check for Dotfiles, install and update
-if [ ! $depsunment == 1 ];then
+if [ ! $depsunmet = 1 ];then
 	if [ ! -d ~/.dotfiles ]; then
 		echo "Install dotfiles: (y/n)"
 		read installdotfiles
