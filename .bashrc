@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Bash only stuff that zsh will skip
-if [[ "`echo $0`" == "bash" -o "`echo $0`" == "-bash" ]];then 
+if [[ "`echo $0`" = "bash" ]];then 
 	# append to the history file, don't overwrite it
 	shopt -s histappend
 
@@ -154,7 +154,7 @@ if [ ! $depsunmet = 1 ];then
 	# Making commands a little shorter
 	for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
         
-        if [[ "`echo $0`" == "bash" -o "`echo $0`" == "-bash" ]];then 
+        if [[ "`echo $0`" == "bash" ]];then 
             source ~/.dotfiles/lib/liquidprompt/liquidprompt
         fi
 fi
