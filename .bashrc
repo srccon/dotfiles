@@ -3,10 +3,10 @@
 #
 
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 
 # What utilites are needed?
-NEEDED=(git vim ncdu ranger)
+NEEDED=(git vim ncdu ranger lynx)
 
 # Empty array to be filled with needed utilites
 NEEDTOINSTALL=()
