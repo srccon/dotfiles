@@ -16,3 +16,6 @@
 [submodule "lib/nerdtree"]
 	path = lib/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "lib/syntastic"]
+	path = lib/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
