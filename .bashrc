@@ -37,7 +37,9 @@ fi
 NEEDED=(git vim ncdu ranger lynx htop tree zsh)
 APTNEEDED=(ack-grep)
 PACMANNEEDED=(ack)
-#TODO add ack / ack-grep
+
+# Are Dependencies set (double negativeTODO) 
+depsunmet=0
 
 # Empty array to be filled with needed utilites
 NEEDTOINSTALL=()
