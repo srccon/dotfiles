@@ -1,0 +1,2 @@
+alias wget='wget -c'
+alias mirrorsite='wget -mk -w 5'

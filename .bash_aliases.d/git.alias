@@ -1,0 +1,4 @@
+alias gc='git commit -m'
+alias ga='git add'
+alias gu='git reset HEAD'
+alias gitk='gitk --all&'

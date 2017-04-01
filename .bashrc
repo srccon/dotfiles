@@ -5,8 +5,20 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # What utilites are needed?
-NEEDED=(git vim ncdu ranger lynx)
+NEEDED=(git vim ncdu ranger lynx htop tree)
+#TODO add ack / ack-grep
 
 # Empty array to be filled with needed utilites
 NEEDTOINSTALL=()
@@ -69,6 +81,28 @@ fi
 source ~/.dotfiles/lib/liquidprompt/liquidprompt
 source ~/.dotfiles/lib/z/z.sh
 
-alias ls='ls -a --color=auto'
+# MOTD
+# Nice greeting when opening a terminal window
+if [ -d ~/.motd.d ]; then
+	source ~/.motd.d/*
+fi
+
+# Aliases
+# Making commands a little shorter
+
+if [ -d ~/.bash_aliases.d ]; then
+	source ~/.bash_aliases.d/*
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 PS1='[\u@\h \W]\$ '

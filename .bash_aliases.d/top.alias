@@ -1,0 +1,1 @@
+if [[ -x `which htop` ]]; then alias top="htop"; fi

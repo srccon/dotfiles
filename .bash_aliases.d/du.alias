@@ -1,0 +1,3 @@
+alias systemdu="sudo ncdu --exclude /media --exclude /proc --exclude /dev --exclude $HOME/.gvfs /"
+alias dirdu='du -hc -l 1'
+alias du='du -h'
