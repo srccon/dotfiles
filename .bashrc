@@ -8,24 +8,27 @@
 if [[ "`echo $0`" == "bash" ]];then 
 	# append to the history file, don't overwrite it
 	shopt -s histappend
+
 	# check the window size after each command and, if necessary,
 	# update the values of LINES and COLUMNS.
 	shopt -s checkwinsize
+
 	# enable programmable completion features (you don't need to enable
 	# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 	# sources /etc/bash.bashrc).
 	if ! shopt -oq posix; then
-	  if [ -f /usr/share/bash-completion/bash_completion ]; then
-	    . /usr/share/bash-completion/bash_completion
-	  elif [ -f /etc/bash_completion ]; then
-	    . /etc/bash_completion
-	  fi
+		if [ -f /usr/share/bash-completion/bash_completion ]; then
+	    		. /usr/share/bash-completion/bash_completion
+	  	elif [ -f /etc/bash_completion ]; then
+	    	. /etc/bash_completion
+	  	fi
 	fi
+
+	# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+	HISTSIZE=1000
+	HISTFILESIZE=2000
 fi
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # What utilites are needed?
 NEEDED=(git vim ncdu ranger lynx htop tree)
@@ -83,9 +86,9 @@ fi
 # Check for Dotfiles, install and update
 if [ ! -d ~/.dotfiles ]; then
 	git clone https://github.com/srccon/dotfiles.git .dotfiles
-	(cd ~/.dotfiles && git submodule update)
+	(cd ~/.dotfiles && git submodule update && ./sync.sh)
 else
-	(cd ~/.dotfiles && git pull && git submodule update)
+	(cd ~/.dotfiles && git pull && git submodule update && ./sync.sh )
 fi
 
 # Source apps to shell
@@ -99,6 +102,5 @@ for f in ~/.motd.d/*; do source $f; done
 # Aliases
 # Making commands a little shorter
 for f in ~/.bash_aliases.d/*; do source $f; done
-
 
 PS1='[\u@\h \W]\$ '
