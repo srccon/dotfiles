@@ -35,6 +35,8 @@ fi
 
 # What utilites are needed?
 NEEDED=(git vim ncdu ranger lynx htop tree zsh)
+APTNEEDED=(ack-grep)
+PACMANNEEDED=(ack)
 #TODO add ack / ack-grep
 
 # Empty array to be filled with needed utilites
@@ -74,13 +76,31 @@ for app in "${NEEDED[@]}"; do
 		NEEDTOINSTALL+=("$app")
 	fi
 done
+for app in "${APTNEEDED[@]}"; do
+	if [ -z "$(isinstalled $app)" ]; then
+		APTNEEDTOINSTALL+=("$app")
+	fi
+done
+for app in "${PACMANNEEDED[@]}"; do
+	if [ -z "$(isinstalled $app)" ]; then
+		PACMANNEEDTOINSTALL+=("$app")
+	fi
+done
+for app in "${YUMNEEDED[@]}"; do
+	if [ -z "$(isinstalled $app)" ]; then
+		YUMNEEDTOINSTALL+=("$app")
+	fi
+done
 
 # Install missing needed apps
 if [ -n "${NEEDTOINSTALL[*]}" ]; then
-	echo "Install Needed apps: ${NEEDTOINSTALL[*]} (y/n)"
+	echo "Install Needed apps: ${NEEDTOINSTALL[*]} ${PACMANNEEDTOINSTALL[*]} ${APTNEEDTOINSTALL[*]} ${YUMNEEDTOINSTALL[*]} (y/n)"
 	read installapps
 	if [ $installapps = "y" ];then
 		sudo $PKM ${NEEDTOINSTALL[@]}
+                if [[ -x `which pacman` ]];then $PKM ${PACMANNEEDTOINSTALL[*]}; fi
+                if [[ -x `which apt-get` ]];then $PKM ${APTNEEDTOINSTALL[*]}; fi
+                if [[ -x `which yum` ]];then $PKM ${YUMNEEDTOINSTALL[*]}; fi
 		depsunmet=0
 	else
 		echo "Skipping Needed Apps Install"
