@@ -14,7 +14,7 @@ if [ ! -d "$dotfileorig" ]; then
 	mkdir $dotfileorig
 fi
 
-find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v ^.git | grep -v ^lib$ > "$tmpfile"
+find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$tmpfile"
 
 while read i; do
 	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
@@ -22,7 +22,6 @@ while read i; do
 		mv "$HOME/$i" "$dotfileorig/"
 	fi
 	if [ -h "$HOME/$i" ]; then
-		echo "Updating Symlink $i"
 		rm "$HOME/$i"
 	fi
 	ln -s "$dotfilepwd/$i" "$HOME/$i"
