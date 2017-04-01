@@ -29,7 +29,7 @@ while read i; do
 	if [ -h "$HOME/$i" ]; then
 		rm "$HOME/$i"
 	fi
-	ln -s "$dotfilepwd/$i" "$HOME/$i"
+        (cd $HOME && ln -s ".dotfiles/$i" "$i")
 done < "$tmpfile"
 
 exit 0
