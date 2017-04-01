@@ -14,7 +14,7 @@ if [ ! -d "$dotfileorig" ]; then
 	mkdir $dotfileorig
 fi
 
-find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$tmpfile"
+find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v .md$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$tmpfile"
 
 while read i; do
 	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
