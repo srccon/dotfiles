@@ -81,37 +81,49 @@ if [ -n "${NEEDTOINSTALL[*]}" ]; then
 	read installapps
 	if [ $installapps = "y" ];then
 		sudo $PKM ${NEEDTOINSTALL[@]}
+		depsunmet=0
 	else
 		echo "Skipping Needed Apps Install"
+		depsunmet=1
 	fi
 fi
 
 # Check for Dotfiles, install and update
-if [ ! -d ~/.dotfiles ]; then
-	git clone https://github.com/srccon/dotfiles.git .dotfiles
-	(cd ~/.dotfiles && \
-		git submodule init && \
-		git submodule update --recursive --remote && \
-		./sync.sh \
-	)
-else
-	(cd ~/.dotfiles && \
-		git pull && \
-		git submodule init && \
-		git submodule update --recursive --remote && \
-		./sync.sh \
-	)
+if [ ! $depsunment == 1 ];then
+	if [ ! -d ~/.dotfiles ]; then
+		echo "Install dotfiles: (y/n)"
+		read installdotfiles
+		if [ $installdotfiles = "y" ];then
+			git clone https://github.com/srccon/dotfiles.git .dotfiles
+			(cd ~/.dotfiles && \
+				git submodule init && \
+				git submodule update --recursive --remote && \
+				./sync.sh \
+			)
+		fi
+	else
+		echo "Update dotfiles: (y/n)"
+		read updatedotfiles
+		if [ $updatedotfiles = "y" ];then
+			(cd ~/.dotfiles && \
+				git pull && \
+				git submodule init && \
+				git submodule update --recursive --remote && \
+				./sync.sh \
+			)
+		fi
+	fi
+	
+	# Source apps to shell
+	source ~/.dotfiles/lib/z/z.sh
+	
+	# MOTD
+	# Nice greeting when opening a terminal window
+	#for f in `ls $HOME/.motd.d/*`; do source $f; done
+	
+	# Aliases
+	# Making commands a little shorter
+	for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
 fi
-
-# Source apps to shell
-source ~/.dotfiles/lib/z/z.sh
-
-# MOTD
-# Nice greeting when opening a terminal window
-#for f in `ls $HOME/.motd.d/*`; do source $f; done
-
-# Aliases
-# Making commands a little shorter
-for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
 
 PS1='[\u@\h \W]\$ '
