@@ -111,7 +111,7 @@ if [ -n "${NEEDTOINSTALL[*]}" ]; then
 fi
 
 # Check for Dotfiles, install and update
-if [ ! $depsunment == 1 ];then
+if [ ! $depsunmet = 1 ];then
 	if [ ! -d ~/.dotfiles ]; then
 		echo "Install dotfiles: (y/n)"
 		read installdotfiles
