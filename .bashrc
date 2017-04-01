@@ -37,12 +37,16 @@ fi
 NEEDED=(git vim ncdu ranger lynx htop tree zsh)
 APTNEEDED=(ack-grep)
 PACMANNEEDED=(ack)
+YUMNEEDED=()
 
 # Are Dependencies set (double negativeTODO) 
 depsunmet=0
 
 # Empty array to be filled with needed utilites
 NEEDTOINSTALL=()
+APTNEEDTOINSTALL=()
+PACMANNEEDTOINSTALL=()
+YUMNEEDTOINSTALL=()
 
 # Which package manager are possible
 PKGMANAGERS=(apt yum pacman)
