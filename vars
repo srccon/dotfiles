@@ -1,0 +1,11 @@
+DOTDIR="$HOME/.dotfiles"
+DOTLIB="$DOTDIR/lib"
+VIMDIR="$DOTDIR/.vim"
+ALIASDIR="$DOTDIR/.alias.d"
+BASHDIR="$DOTDIR/.bash.d"
+ZSHDIR="$DOTDIR/.zsh.d"
+INSTALLDIR="$DOTDIR/install"
+SHDIR="$DOTDIR/.sh.d"
+
+DOTREPO="https://github.com/srccon/dotfiles.git"
+

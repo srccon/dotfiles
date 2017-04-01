@@ -1,32 +1,19 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendhistory
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename "~/.zshrc"
+#
+# ~/.zshrc
+#
 
-autoload -Uz compinit
-compinit
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# End of lines added by compinstall
+# Import variables (all following calls will be with variables calls)
+source "$HOME/.dotfiles/vars"
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Install/update Dependencies (my faves)
+source $INSTALLDIR/installdeps.sh
+source $INSTALLDIR/installdotfiles.sh
 
-COMPLETION_WAITING_DOTS="true"
+# Global Configs
+for f in `ls $SHDIR/*`; do source $f; done
 
-source ~/.bashrc
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
-
-source ~/.dotfiles/lib/pure/async.zsh
-source ~/.dotfiles/lib/pure/pure.zsh
-source ~/.dotfiles/lib/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Zsh Configs
+for f in `ls $ZSHDIR/*`; do source $f; done

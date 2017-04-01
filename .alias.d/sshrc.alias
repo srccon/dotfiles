@@ -1,2 +1,2 @@
-alias sshrc="$HOME/.dotfiles/lib/sshrc/sshrc"
-alias moshrc="$HOME/.dotfiles/lib/sshrc/moshrc"
+alias sshrc="$DOTLIB/sshrc/sshrc"
+alias moshrc="$DOTLIB/sshrc/moshrc"
