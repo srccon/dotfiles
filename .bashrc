@@ -142,6 +142,10 @@ if [ ! $depsunmet = 1 ];then
 	
 	# Source apps to shell
 	source ~/.dotfiles/lib/z/z.sh
+
+        # Add check for vim files
+        if [[ ! -d $HOME/.vim/files ]];then mkdir -p $HOME/.vim/files/undo; mkdir -p $HOME/.vim/files/backup; mkdir -p $HOME/.vim/files/info; mkdir -p $HOME/.vim/files/swap; fi 
+
 	
 	# MOTD
 	# Nice greeting when opening a terminal window
