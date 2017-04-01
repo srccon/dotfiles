@@ -28,7 +28,6 @@ if [[ "`echo $0`" = "bash" ]];then
 	# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 	HISTSIZE=1000
 	HISTFILESIZE=2000
-
 fi
 
 
@@ -62,7 +61,7 @@ for pkgm in "${PKGMANAGERS[@]}"; do
 		apt)
 			PKM="apt-get install -y"
 			;;
-		yum)	
+		yum)
 			PKM="yum install"
 			;;
 		pacman)
@@ -70,7 +69,7 @@ for pkgm in "${PKGMANAGERS[@]}"; do
 			;;
 		*)
 			;;
-		esac	
+		esac
 		# echo "Using $pkgm and $PKM to install packages"
 	fi
 done
@@ -143,16 +142,21 @@ if [ ! $depsunmet = 1 ];then
 	source ~/.dotfiles/lib/z/z.sh
 
         # Add check for vim files
-        if [[ ! -d $HOME/.vim/files ]];then mkdir -p $HOME/.vim/files/undo; mkdir -p $HOME/.vim/files/backup; mkdir -p $HOME/.vim/files/info; mkdir -p $HOME/.vim/files/swap; fi 
+        # TODO Refactor all this
+        if [[ ! -d $HOME/.vim/files ]];then 
+            mkdir -p $HOME/.vim/files/undo 
+            mkdir -p $HOME/.vim/files/backup 
+            mkdir -p $HOME/.vim/files/info 
+            mkdir -p $HOME/.vim/files/swap 
+        fi 
 
-	
 	# MOTD
 	# Nice greeting when opening a terminal window
 	#for f in `ls $HOME/.motd.d/*`; do source $f; done
 	
 	# Aliases
 	# Making commands a little shorter
-	for f in `ls $HOME/.bash_aliases.d/*`; do source $f; done
+	for f in `ls $HOME/.dotfiles/.alias.d/*`; do source $f; done
         
         if [[ "`echo $0`" == "bash" ]];then 
             source ~/.dotfiles/lib/liquidprompt/liquidprompt
