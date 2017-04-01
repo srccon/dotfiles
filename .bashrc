@@ -37,7 +37,7 @@ fi
 NEEDED=(git vim ncdu ranger lynx htop tree zsh)
 APTNEEDED=(ack-grep)
 PACMANNEEDED=(ack)
-YUMNEEDED=()
+YUMNEEDED=(ack)
 
 # Are Dependencies set (double negativeTODO) 
 depsunmet=0
