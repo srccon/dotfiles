@@ -10,11 +10,10 @@ DOTDIRNAME=".dotfiles"
 DOTDIR="$HOME/$DOTDIRNAME"
 DOTLIB="$DOTDIR/lib"
 DOTBIN="$DOTDIR/bin "
-VIMDIR="$DOTDIR/.vim"
+VIMDIR="$DOTDIR/.vim.link"
 ALIASDIR="$DOTDIR/.alias.d"
 BASHDIR="$DOTDIR/.bash.d"
 ZSHDIR="$DOTDIR/.zsh.d"
-INSTALLDIR="$DOTDIR/install"
 SHDIR="$DOTDIR/.sh.d"
 
 DOTORIG="$DOTDIR/orig"
@@ -67,7 +66,7 @@ for pkgm in "${PKGMANAGERS[@]}"; do
     if [ -x "`which $pkgm`" ]; then
         case $pkgm in
         apt-get)
-            PKM="sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get install -y"
+            PKM="sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get -y install"
             installingPKGS=("${APTPKGS[@]}" "${PKGS[@]}")
             installcontainer
             ;;
