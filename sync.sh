@@ -1,28 +1,20 @@
 #!/bin/bash
 
-source ./vars
+if [[ -f $HOME/.dotfiles/.sshrc.link ]];then source $HOME/.dotfiles/.sshrc.link; else echo "Cannot find ~/.dotfiles/.sshrc, change dotfiles path"; fi
 
-function finish() {
-    rm $DOTTMP
+if [ ! -d "$DOTORIG" ]; then mkdir $DOTORIG; fi
+
+symlinktail="link"
+
+function linkify {
+    echo "$1" | sed "s/^$DOTDIRNAME\///g" | sed "s/\.$symlinktail$//g"
 }
-trap finish EXIT
-
-if [ ! -d "$DOTORIG" ]; then
-	echo "Making $DOTORIG directory for existing files/directories"
-	mkdir $DOTORIG
-fi
-
-find -maxdepth 1 | sed 's/\.\///' | tail -n +2 | grep -v ^sync.sh$ | grep -v ^orig$ | grep -v .md$ | grep -v ^.git | grep -v ^lib$ | grep -v .swp$ > "$DOTTMP"
-
-while read i; do
-	if [ -a "$HOME/$i" -a ! -h "$HOME/$i" ]; then
-		echo "Moving $i to $DOTORIG/$i"
-		mv "$HOME/$i" "$DOTORIG/"
-	fi
-	if [ -h "$HOME/$i" ]; then
-		rm "$HOME/$i"
-	fi
-        (cd $HOME && ln -s "$DOTDIRNAME/$i" "$i")
-done < "$DOTTMP"
+(cd $HOME && \
+    for i in `find $DOTDIRNAME -name "*.$symlinktail"`; do
+        if [[ -a "`linkify $i`" ]]; then mv "`linkify $i`" $DOTORIG/; fi;
+        if [[ -h "`linkify $i`" ]]; then rm "`linkify $i`"; fi;
+        ln -s $i `linkify $i`
+    done \
+)
 
 exit 0
