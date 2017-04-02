@@ -42,7 +42,6 @@ function missingPKGS {
     if [[ ! -x "`which $1`" ]];then needPKGS+=("$1"); fi
 }
 function installPKGS {
-    echo "\n"
     echo "Install: ${needPKGS[@]}?"
     read installapps
 }
@@ -90,7 +89,6 @@ done
 # Check for Dotfiles, install and update
 if [[ -x "`which git`" ]];then
     if [ ! -d "$DOTDIR" ]; then
-        echo "\n" 
         echo "Install dotfiles: (y/n)"
         read installdotfiles
         if [ "$installdotfiles" = "y" ];then
