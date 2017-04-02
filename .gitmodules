@@ -34,3 +34,6 @@
 [submodule "lib/sshrc"]
 	path = lib/sshrc
 	url = https://github.com/Russell91/sshrc.git
+[submodule "lib/gitflow"]
+	path = lib/gitflow
+	url = https://github.com/nvie/gitflow.git
