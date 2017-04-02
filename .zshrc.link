@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # Import variables, and install 
-if [[ -f $HOME/.dotfiles/.sshrc ]];then source $HOME/.dotfiles/.sshrc; else echo "Cannot find ~/.dotfiles/.sshrc, change dotfiles path"; fi
+if [[ -f $HOME/.dotfiles/.sshrc.link ]];then source $HOME/.dotfiles/.sshrc.link; else echo "Cannot find ~/.dotfiles/.sshrc.link, change dotfiles path"; fi
 
 # Global Configs
 for f in `ls $SHDIR/*`; do source $f; done
