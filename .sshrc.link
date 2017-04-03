@@ -9,7 +9,7 @@
 DOTDIRNAME=".dotfiles"
 DOTDIR="$HOME/$DOTDIRNAME"
 DOTLIB="$DOTDIR/lib"
-DOTBIN="$DOTDIR/bin "
+DOTBIN="$DOTDIR/bin"
 VIMDIR="$DOTDIR/.vim.link"
 ALIASDIR="$DOTDIR/.alias.d"
 BASHDIR="$DOTDIR/.bash.d"
