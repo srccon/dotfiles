@@ -15,6 +15,7 @@ ALIASDIR="$DOTDIR/.alias.d"
 BASHDIR="$DOTDIR/.bash.d"
 ZSHDIR="$DOTDIR/.zsh.d"
 SHDIR="$DOTDIR/.sh.d"
+DOTSYNC="/tmp/dotfiles_sync"
 
 DOTORIG="$DOTDIR/orig"
 DOTTMP="/tmp/dotfiles"
@@ -60,6 +61,38 @@ function installcontainer {
     if [[ $installapps = "y" ]];then $PKM ${needPKGS[@]}; fi
 }
 
+function updatedotfiles {
+    # Check for Dotfiles, install and update
+    if [[ -x "`which git`"  ]];then
+        if [ ! -f "$DOTSYNC" ];then
+            if [ ! -d "$DOTDIR" ]; then
+                echo "Install dotfiles: (y/n)"
+                read installdotfiles
+                if [ "$installdotfiles" = "y" ];then
+                    git clone --recursive "$DOTREPO" "$DOTDIR"
+                    (cd $DOTDIR && \
+                        submoduleInstall && \
+                        dotfilesSync \
+                    )
+                fi
+            else
+                echo "Update dotfiles: (y/n)"
+                read updatedotfiles
+                if [ $updatedotfiles = "y" ];then
+                    (cd $DOTDIR && \
+                        git pull && \
+                        submoduleInstall && \
+                        dotfilesSync \
+                    )
+                fi
+                if [[ ! -f "$DOTSYNC" ]];then touch "$DOTSYNC"; fi
+            fi
+        fi
+    else
+        echo "Git missing, cannot clone/update dotfiles"
+    fi
+}
+
 # Logic
 ######################
 
@@ -88,29 +121,5 @@ for pkgm in "${PKGMANAGERS[@]}"; do
     fi
 done
 
-# Check for Dotfiles, install and update
-if [[ -x "`which git`" ]];then
-    if [ ! -d "$DOTDIR" ]; then
-        echo "Install dotfiles: (y/n)"
-        read installdotfiles
-        if [ "$installdotfiles" = "y" ];then
-            git clone --recursive "$DOTREPO" "$DOTDIR"
-            (cd $DOTDIR && \
-                submoduleInstall && \
-                dotfilesSync \
-            )
-        fi
-    else
-        echo "Update dotfiles: (y/n)"
-        read updatedotfiles
-        if [ $updatedotfiles = "y" ];then
-            (cd $DOTDIR && \
-                git pull && \
-                submoduleInstall && \
-                dotfilesSync \
-            )
-        fi
-    fi
-else
-    echo "Git missing, cannot clone/update dotfiles"
-fi
+updatedotfiles
+
