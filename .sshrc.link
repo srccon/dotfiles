@@ -85,6 +85,8 @@ function updatedotfiles {
                         dotfilesSync \
                     )
                 fi
+                # added file to tmp so I don't get reminded every new shell to 
+                # update, but every first shell
                 if [[ ! -f "$DOTSYNC" ]];then touch "$DOTSYNC"; fi
             fi
         fi
@@ -106,6 +108,7 @@ for pkgm in "${PKGMANAGERS[@]}"; do
             installcontainer
             ;;
         yum)
+            # TODO what is the update for yum
             PKM="sudo yum install"
             installingPKGS=("${YUMPKGS[@]}" "${PKGS[@]}")
             installcontainer
