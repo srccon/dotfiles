@@ -10,7 +10,7 @@ function linkify {
     echo "$1" | sed "s/^$DOTDIRNAME\///g" | sed "s/\.$symlinktail$//g"
 }
 (cd $HOME && \
-    for i in `find $DOTDIRNAME -name "*.$symlinktail"`; do
+    for i in `find $DOTDIRNAME -maxdepth 1 -name "*.$symlinktail"`; do
         if [[ -a "`linkify $i`" ]]; then mv "`linkify $i`" $DOTORIG/; fi;
         if [[ -h "`linkify $i`" ]]; then rm "`linkify $i`"; fi;
         ln -s $i `linkify $i`
