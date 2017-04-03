@@ -1,0 +1,19 @@
+setlocal formatoptions=1 
+setlocal noexpandtab 
+map j gj 
+map k gk
+setlocal spell spelllang=en_us 
+set nocp
+set complete+=s
+set number
+
+set wrap 
+set linebreak 
+set nolist " list disables linebreak
+setlocal noautoindent
+setlocal nocindent
+setlocal nosmartindent
+setlocal indentexpr=
+set backspace=2
+startinsert
+
