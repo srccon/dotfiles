@@ -37,3 +37,6 @@
 [submodule "lib/gitflow"]
 	path = lib/gitflow
 	url = https://github.com/nvie/gitflow.git
+[submodule "lib/k"]
+	path = lib/k
+	url = https://github.com/supercrabtree/k.git
