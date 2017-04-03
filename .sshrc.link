@@ -22,7 +22,9 @@ DOTTMP="/tmp/dotfiles"
 DOTREPO="https://github.com/srccon/dotfiles.git"
 
 # What to download
-PKGS=(git vim ncdu ranger lynx htop tree zsh)
+# caca-utils:       viewing images as text
+# poppler-utils:    PDF's as text
+PKGS=(git vim ncdu ranger lynx htop tree zsh highlight atool w3m mediainfo)
 
 # Distro specific
 APTPKGS=(ack-grep)
