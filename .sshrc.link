@@ -94,7 +94,7 @@ if [[ -x "`which git`" ]];then
         echo "Install dotfiles: (y/n)"
         read installdotfiles
         if [ "$installdotfiles" = "y" ];then
-            git clone "$DOTREPO" "$DOTDIR"
+            git clone --recursive "$DOTREPO" "$DOTDIR"
             (cd $DOTDIR && \
                 submoduleInstall && \
                 dotfilesSync \
