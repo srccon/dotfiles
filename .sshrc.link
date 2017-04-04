@@ -25,6 +25,7 @@ DOTREPO="https://github.com/srccon/dotfiles.git"
 # What to download
 # caca-utils:       viewing images as text
 # poppler-utils:    PDF's as text
+# httpie:           wget and curl with colors 
 PKGS=(git vim ncdu ranger lynx htop tree zsh highlight atool w3m mediainfo)
 
 # Distro specific
@@ -103,17 +104,19 @@ for pkgm in "${PKGMANAGERS[@]}"; do
     if [ -x "`which $pkgm`" ]; then
         case $pkgm in
         apt-get)
-            PKM="sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get -y install"
+            PKM="sudo apt-get -y install"
             installingPKGS=("${APTPKGS[@]}" "${PKGS[@]}")
             installcontainer
             ;;
         yum)
             # TODO what is the update for yum
+            # TODO add auto-conform like -y for apt
             PKM="sudo yum install"
             installingPKGS=("${YUMPKGS[@]}" "${PKGS[@]}")
             installcontainer
             ;;
         pacman)
+            # TODO I'm not sure --confirm does what I think it does
             PKM="sudo pacman -Syu --confirm"
             installingPKGS=("${PACMANPKGS[@]}" "${PKGS[@]}")
             installcontainer
