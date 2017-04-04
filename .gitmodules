@@ -40,3 +40,6 @@
 [submodule "lib/k"]
 	path = lib/k
 	url = https://github.com/supercrabtree/k.git
+[submodule "lib/modman"]
+	path = lib/modman
+	url = https://github.com/colinmollenhour/modman.git
