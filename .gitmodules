@@ -43,3 +43,15 @@
 [submodule "lib/modman"]
 	path = lib/modman
 	url = https://github.com/colinmollenhour/modman.git
+[submodule "lib/tlib_vim"]
+	path = lib/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "lib/vim-addons-mw-utils"]
+	path = lib/vim-addons-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "lib/vim-snipmate"]
+	path = lib/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "lib/vim-snippets"]
+	path = lib/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
