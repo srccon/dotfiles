@@ -1,1 +1,1 @@
-alias e-ip='echo `noglob curl -s http://ipcalf.com/?format=text`'
+alias e-ip="echo `curl -s 'http://ipcalf.com/?format=text'`"
