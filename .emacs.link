@@ -1,0 +1,29 @@
+; Saves directory
+(setq backup-directory-alist `(("." . "~/.emacs-saves")))
+
+(setq org-directory "~/org/")
+(setq org-agenda-files '("~/org/"))
+
+(setq org-tags-column 0)
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-cc" 'org-capture)
+(define-key global-map "\C-cb" 'org-iswitchb)
+(define-key global-map "\C-ca" 'org-agenda)
+(global-font-lock-mode 1)
+(setq org-log-done t)
+
+(setq org-todo-keywords
+       '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)")))
+
+(setq org-default-notes-file (concat org-directory "clients.org"))
+(define-key global-map "\C-cc" 'org-capture)
+
+(setq org-capture-templates
+      (quote (("t" "todo" entry (file (concat org-directory "clients.org"))
+               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("n" "note" entry (file (concat org-directory "clients.org"))
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "Journal" entry (file+datetree (concat org-directory "journal.org"))
+               "* %?\n%U\n" :clock-in t :clock-resume t)
+              )))
