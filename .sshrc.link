@@ -43,7 +43,7 @@ needPKGS=()
 #################
 
 function missingPKGS {
-    if [[ ! -x "`which $1`" ]];then needPKGS+=("$1"); fi
+    if [[ ! `which $1 &>/dev/null` ]];then needPKGS+=("$1"); fi
 }
 function installPKGS {
     echo "Install: ${needPKGS[@]}?"
@@ -64,7 +64,7 @@ function installcontainer {
 
 function updatedotfiles {
     # Check for Dotfiles, install and update
-    if [[ -x "`which git`"  ]];then
+    if [[ `which git` ]];then
         if [ ! -f "$DOTSYNC" ];then
             if [ ! -d "$DOTDIR" ]; then
                 echo "Install dotfiles: (y/n)"
@@ -101,7 +101,7 @@ function updatedotfiles {
 
 # Switch to find Package manager and install apps 
 for pkgm in "${PKGMANAGERS[@]}"; do
-    if [ -x "`which $pkgm`" ]; then
+    if [ `which $pkgm &> /dev/null` ]; then
         case $pkgm in
         apt-get)
             PKM="sudo apt-get -y install"
